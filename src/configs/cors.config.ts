@@ -1,7 +1,9 @@
 const allowedOrigins = [
     'http://localhost:3000',
     'http://localhost:4200',
-    'http://localhost:5173'
+    'http://localhost:5173',
+    'https://ar-robotics-assign-fe.vercel.app',
+    'https://ar-robotics-assign-fe.vercel.app/'
 ]
 
 import { CorsOptions } from 'cors';
