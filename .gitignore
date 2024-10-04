@@ -2,7 +2,8 @@
 node_modules/
 
 # TypeScript build output
-dist/
+#  Commented because of vercel 404
+# dist/
 
 # Environment variables
 .env
