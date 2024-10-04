@@ -1,12 +1,12 @@
 import express from 'express';
 const router = express.Router();
-import loginLimiter from '../middlewares/loginLimiter.ts';
+import loginLimiter from '../middlewares/loginLimiter';
 import {
     refresh,
     register,
     signin,
     signout,
-} from '../controllers/auth.controller.ts';
+} from '../controllers/auth.controller';
 
 router.post('/register', register);
 router.post('/signin', loginLimiter, signin);
