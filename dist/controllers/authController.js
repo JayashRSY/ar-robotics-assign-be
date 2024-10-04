@@ -5,9 +5,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.signout = exports.refresh = exports.signin = exports.register = void 0;
 const bcryptjs_1 = __importDefault(require("bcryptjs"));
-const user_model_1 = __importDefault(require("../models/user.model"));
+const userModel_1 = __importDefault(require("../models/userModel"));
 const createTokens_1 = require("../utils/createTokens");
-const cookie_config_1 = __importDefault(require("../configs/cookie.config"));
+const cookieConfig_1 = __importDefault(require("../configs/cookieConfig"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const register = async (req, res, next) => {
     try {
@@ -18,12 +18,12 @@ const register = async (req, res, next) => {
             return;
         }
         const hashedPassword = bcryptjs_1.default.hashSync(password, 12); // hashSync is synchronous
-        const existingUser = await user_model_1.default.findOne({ email }).lean();
+        const existingUser = await userModel_1.default.findOne({ email }).lean();
         if (existingUser) {
             res.status(409).json({ success: false, message: 'User already exists' });
             return;
         }
-        const newUser = new user_model_1.default({
+        const newUser = new userModel_1.default({
             name,
             age,
             address,
@@ -50,7 +50,7 @@ const signin = async (req, res, next) => {
             res.status(400).json({ success: false, message: 'Email and password are required' });
             return;
         }
-        const validUser = await user_model_1.default.findOne({ email }).exec();
+        const validUser = await userModel_1.default.findOne({ email }).exec();
         if (!validUser) {
             res.status(404).json({ success: false, message: 'User not found' });
             return;
@@ -61,7 +61,7 @@ const signin = async (req, res, next) => {
             return;
         }
         const { accessToken, refreshToken } = (0, createTokens_1.createTokens)(validUser);
-        res.cookie('refreshToken', refreshToken, cookie_config_1.default)
+        res.cookie('refreshToken', refreshToken, cookieConfig_1.default)
             .status(200)
             .json({
             success: true,
@@ -92,13 +92,13 @@ const refresh = (req, res, next) => {
             return;
         }
         const { email } = decoded;
-        const validUser = await user_model_1.default.findOne({ email }).exec();
+        const validUser = await userModel_1.default.findOne({ email }).exec();
         if (!validUser) {
             res.status(401).json({ message: 'Unauthorized' });
             return;
         }
         const { accessToken, refreshToken } = (0, createTokens_1.createTokens)(validUser);
-        res.cookie('refreshToken', refreshToken, cookie_config_1.default)
+        res.cookie('refreshToken', refreshToken, cookieConfig_1.default)
             .status(200)
             .json({
             success: true,
@@ -124,4 +124,4 @@ const signout = (req, res, next) => {
         .json({ success: true, message: 'Signed out successfully' });
 };
 exports.signout = signout;
-//# sourceMappingURL=auth.controller.js.map
+//# sourceMappingURL=authController.js.map

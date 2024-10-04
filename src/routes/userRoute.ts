@@ -3,7 +3,7 @@ const router = express.Router();
 import {
     getAllUsers,
     deleteUser,
-} from '../controllers/user.controller';
+} from '../controllers/userController';
 import { verifyToken } from '../middlewares/verifyToken';
 
 router.get('/all-users', verifyToken, getAllUsers);

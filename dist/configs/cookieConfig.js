@@ -7,4 +7,4 @@ const cookieConfig = {
     sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Lax',
 };
 exports.default = cookieConfig;
-//# sourceMappingURL=cookie.config.js.map
+//# sourceMappingURL=cookieConfig.js.map

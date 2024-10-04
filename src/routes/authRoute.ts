@@ -6,7 +6,7 @@ import {
     register,
     signin,
     signout,
-} from '../controllers/auth.controller';
+} from '../controllers/authController';
 
 router.post('/register', register);
 router.post('/signin', loginLimiter, signin);

@@ -1,8 +1,8 @@
 import { Request, Response, NextFunction } from 'express';
 import bcryptjs from "bcryptjs";
-import UserModel from "../models/user.model";
+import UserModel from "../models/userModel";
 import { createTokens } from '../utils/createTokens';
-import cookieConfig from '../configs/cookie.config';
+import cookieConfig from '../configs/cookieConfig';
 import jwt from 'jsonwebtoken';
 
 export const register = async (req: Request, res: Response, next: NextFunction): Promise<void> => {

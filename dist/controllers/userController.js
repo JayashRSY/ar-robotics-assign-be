@@ -4,10 +4,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteUser = exports.getAllUsers = void 0;
-const user_model_1 = __importDefault(require("../models/user.model"));
+const userModel_1 = __importDefault(require("../models/userModel"));
 const getAllUsers = async (req, res, next) => {
     if (req.user?.role === "admin") {
-        const allUsers = await user_model_1.default.find({}, 'name email age address role updatedAt createdAt').lean();
+        const allUsers = await userModel_1.default.find({}, 'name email age address role updatedAt createdAt').lean();
         res.status(200)
             .json({
             success: true,
@@ -38,7 +38,7 @@ const deleteUser = async (req, res, next) => {
         });
     }
     if (req.user?.role === "admin") {
-        const user = await user_model_1.default.findByIdAndDelete(id).lean();
+        const user = await userModel_1.default.findByIdAndDelete(id).lean();
         if (!user) {
             res.status(404).json({
                 success: false,
@@ -60,4 +60,4 @@ const deleteUser = async (req, res, next) => {
     }
 };
 exports.deleteUser = deleteUser;
-//# sourceMappingURL=user.controller.js.map
+//# sourceMappingURL=userController.js.map

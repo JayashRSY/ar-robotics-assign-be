@@ -5,7 +5,6 @@ const allowedOrigins = [
     'http://localhost:4200',
     'http://localhost:5173',
     'https://ar-robotics-assign-fe.vercel.app',
-    'https://ar-robotics-assign-fe.vercel.app/'
 ];
 const corsOptions = {
     origin: (origin, callback) => {
@@ -21,4 +20,4 @@ const corsOptions = {
     optionsSuccessStatus: 200,
 };
 exports.default = corsOptions;
-//# sourceMappingURL=cors.config.js.map
+//# sourceMappingURL=corsConfig.js.map

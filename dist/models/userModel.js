@@ -43,4 +43,4 @@ userSchema.methods.toJSON = function () {
 // Create and export the model.
 const UserModel = mongoose_1.default.model("User", userSchema);
 exports.default = UserModel;
-//# sourceMappingURL=user.model.js.map
+//# sourceMappingURL=userModel.js.map
